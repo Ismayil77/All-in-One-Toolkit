@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All-in-One Toolkit with Dark/Light Theme</title>
+  <!-- Bootstrap CSS -->
+<link id="bootstrap-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+
+</head>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Toolkit</a>
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#unit">Unit Converter</a></li>
+        <li class="nav-item"><a class="nav-link" href="#financial">Financial Calculator</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container py-5" id="app">
+    <!-- Home -->
+    <section id="home" class="fade-in">
+      <div class="text-center mb-5">
+        <h1 class="display-5">Welcome to the All-in-One Toolkit</h1>
+        <p class="lead">
+          Convert units, calculate finances, and more — all offline and blazing fast!
+        </p>
+      </div>
+    </section>
+
+    <!-- Unit Converter -->
+    <section id="unit" class="fade-in py-4">
+      <h2>Unit Converters</h2>
+      <ul class="nav nav-tabs mb-4" id="unitTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="temp-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#temp"
+            type="button"
+            role="tab"
+            aria-controls="temp"
+            aria-selected="true"
+          >
+            Temperature
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="currency-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#currency"
+            type="button"
+            role="tab"
+            aria-controls="currency"
+            aria-selected="false"
+          >
+            Currency
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="length-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#length"
+            type="button"
+            role="tab"
+            aria-controls="length"
+            aria-selected="false"
+          >
+            Length
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="weight-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#weight"
+            type="button"
+            role="tab"
+            aria-controls="weight"
+            aria-selected="false"
+          >
+            Weight
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" id="unitTabContent">
+
+        <!-- Temperature -->
+        <div
+          class="tab-pane fade show active"
+          id="temp"
+          role="tabpanel"
+          aria-labelledby="temp-tab"
+        >
+          <div class="row g-3 align-items-center">
+            <div class="col-md-4">
+              <input
+                id="tempInput"
+                class="form-control"
+                type="number"
+                placeholder="Enter °C"
+              />
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-primary" id="convertTempBtn">
+                Convert to °F
+              </button>
+            </div>
+            <div class="col-md-4">
+              <p class="mt-2" id="tempResult"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Currency -->
+        <div
+          class="tab-pane fade"
+          id="currency"
+          role="tabpanel"
+          aria-labelledby="currency-tab"
+        >
+          <div class="row g-3 align-items-center">
+            <div class="col-md-3">
+              <select id="currencyFrom" class="form-select" aria-label="From currency"></select>
+            </div>
+            <div class="col-md-3">
+              <select id="currencyTo" class="form-select" aria-label="To currency"></select>
+            </div>
+            <div class="col-md-3">
+              <input
+                id="currencyAmount"
+                class="form-control"
+                type="number"
+                placeholder="Amount"
+                min="0"
+                step="any"
+                aria-label="Amount to convert"
+              />
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-primary" id="convertCurrencyBtn">
+                Convert
+              </button>
+            </div>
+            <div class="col-12 mt-3">
+              <p id="currencyResult" class="fw-semibold"></p>
+              <small id="currencyLastUpdate" class="text-muted"></small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Length -->
+        <div
+          class="tab-pane fade"
+          id="length"
+          role="tabpanel"
+          aria-labelledby="length-tab"
+        >
+          <div class="row g-3 align-items-center">
+            <div class="col-md-3">
+              <select id="lengthFrom" class="form-select" aria-label="From length unit">
+                <option value="m">Meter (m)</option>
+                <option value="km">Kilometer (km)</option>
+                <option value="ft">Feet (ft)</option>
+                <option value="mi">Mile (mi)</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select id="lengthTo" class="form-select" aria-label="To length unit">
+                <option value="m">Meter (m)</option>
+                <option value="km">Kilometer (km)</option>
+                <option value="ft">Feet (ft)</option>
+                <option value="mi">Mile (mi)</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <input
+                id="lengthAmount"
+                class="form-control"
+                type="number"
+                placeholder="Amount"
+                min="0"
+                step="any"
+                aria-label="Length amount"
+              />
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-primary" id="convertLengthBtn">
+                Convert
+              </button>
+            </div>
+            <div class="col-12 mt-3">
+              <p id="lengthResult" class="fw-semibold"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weight -->
+        <div
+          class="tab-pane fade"
+          id="weight"
+          role="tabpanel"
+          aria-labelledby="weight-tab"
+        >
+          <div class="row g-3 align-items-center">
+            <div class="col-md-3">
+              <select id="weightFrom" class="form-select" aria-label="From weight unit">
+                <option value="kg">Kilogram (kg)</option>
+                <option value="g">Gram (g)</option>
+                <option value="lb">Pound (lb)</option>
+                <option value="oz">Ounce (oz)</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select id="weightTo" class="form-select" aria-label="To weight unit">
+                <option value="kg">Kilogram (kg)</option>
+                <option value="g">Gram (g)</option>
+                <option value="lb">Pound (lb)</option>
+                <option value="oz">Ounce (oz)</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <input
+                id="weightAmount"
+                class="form-control"
+                type="number"
+                placeholder="Amount"
+                min="0"
+                step="any"
+                aria-label="Weight amount"
+              />
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-primary" id="convertWeightBtn">
+                Convert
+              </button>
+            </div>
+            <div class="col-12 mt-3">
+              <p id="weightResult" class="fw-semibold"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Financial Calculator -->
+    <section id="financial" class="fade-in py-5">
+      <h2>Financial Calculators</h2>
+      <ul class="nav nav-tabs mb-4" id="finTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="loan-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#loan"
+            type="button"
+            role="tab"
+            aria-controls="loan"
+            aria-selected="true"
+          >
+            Loan EMI
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="sip-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#sip"
+            type="button"
+            role="tab"
+            aria-controls="sip"
+            aria-selected="false"
+          >
+            SIP Calculator
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" id="finTabContent">
+        <!-- Loan EMI -->
+        <div
+          class="tab-pane fade show active"
+          id="loan"
+          role="tabpanel"
+          aria-labelledby="loan-tab"
+        >
+          <div class="row g-3">
+            <div class="col-md-4">
+              <input
+                id="loanAmount"
+                class="form-control"
+                placeholder="Loan Amount (₹)"
+                type="number"
+                min="0"
+              />
+            </div>
+            <div class="col-md-4">
+              <input
+                id="loanRate"
+                class="form-control"
+                placeholder="Annual Interest Rate (%)"
+                type="number"
+                step="0.01"
+                min="0"
+              />
+            </div>
+            <div class="col-md-4">
+              <input
+                id="loanTenure"
+                class="form-control"
+                placeholder="Tenure (Months)"
+                type="number"
+                min="1"
+              />
+            </div>
+            <div class="col-12 mt-3">
+              <button class="btn btn-success" id="calcLoanBtn">
+                Calculate EMI
+              </button>
+            </div>
+            <div class="col-12 mt-3">
+              <div id="emiResult" class="alert alert-info d-none"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIP Calculator -->
+        <div
+          class="tab-pane fade"
+          id="sip"
+          role="tabpanel"
+          aria-labelledby="sip-tab"
+        >
+          <div class="row g-3">
+            <div class="col-md-4">
+              <input
+                id="sipMonthly"
+                class="form-control"
+                placeholder="Monthly Investment (₹)"
+                type="number"
+                min="0"
+              />
+            </div>
+            <div class="col-md-4">
+              <input
+                id="sipRate"
+                class="form-control"
+                placeholder="Expected Annual Return Rate (%)"
+                type="number"
+                step="0.01"
+                min="0"
+              />
+            </div>
+            <div class="col-md-4">
+              <input
+                id="sipTenure"
+                class="form-control"
+                placeholder="Tenure (Years)"
+                type="number"
+                min="1"
+              />
+            </div>
+            <div class="col-12 mt-3">
+              <button class="btn btn-success" id="calcSIPBtn">
+                Calculate SIP
+              </button>
+            </div>
+            <div class="col-12 mt-3">
+              <div id="sipResult" class="alert alert-info d-none"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="text-center py-3 mt-5 border-top">
+    <small>&copy; 2025 All-in-One Toolkit | Built with Bootstrap & jQuery</small>
+  </footer>
+
+  <!-- Bootstrap Bundle (Popper + Bootstrap JS) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  ></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+  <script>
+    // ========== THEME TOGGLE ==========
+    const themeToggle = document.getElementById("themeToggle");
+
+    function applyTheme(theme) {
+      if (theme === "dark") {
+        document.body.classList.add("dark");
+        document.getElementById("bootstrap-css").href =
+          "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap-dark.min.css";
+        themeToggle.textContent = "☀️";
+      } else {
+        document.body.classList.remove("dark");
+        document.getElementById("bootstrap-css").href =
+          "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css";
+        themeToggle.textContent = "🌙";
+      }
+      localStorage.setItem("theme", theme);
+    }
+
+    // Initialize theme from localStorage
+    const savedTheme = localStorage.getItem("theme") || "light";
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener("click", () => {
+      const newTheme = document.body.classList.contains("dark") ? "light" : "dark";
+      applyTheme(newTheme);
+    });
+
+    // ========== Temperature Converter ==========
+    $("#convertTempBtn").click(() => {
+      const c = parseFloat($("#tempInput").val());
+      if (isNaN(c)) {
+        $("#tempResult").text("Please enter a valid number.");
+        return;
+      }
+      const f = (c * 9) / 5 + 32;
+      $("#tempResult").text(`${c} °C = ${f.toFixed(2)} °F`);
+      localStorage.setItem("tempInput", c);
+    });
+    // Restore temperature input
+    const storedTemp = localStorage.getItem("tempInput");
+    if (storedTemp) $("#tempInput").val(storedTemp);
+
+    // ========== Currency Converter ==========
+    const currencyAPI = "https://open.er-api.com/v6/latest/USD"; // free API with CORS support
+    let currencyRates = {};
+    let lastCurrencyFetch = 0;
+    const CACHE_DURATION = 12 * 60 * 60 * 1000; // 12 hours cache
+
+    // Populate currency selectors
+    function populateCurrencySelectors() {
+      const from = $("#currencyFrom");
+      const to = $("#currencyTo");
+      from.empty();
+      to.empty();
+      Object.keys(currencyRates).forEach((code) => {
+        from.append(`<option value="${code}">${code}</option>`);
+        to.append(`<option value="${code}">${code}</option>`);
+      });
+      // Restore last selected from localStorage or default
+      from.val(localStorage.getItem("currencyFrom") || "USD");
+      to.val(localStorage.getItem("currencyTo") || "INR");
+      $("#currencyAmount").val(localStorage.getItem("currencyAmount") || 1);
+    }
+
+    // Fetch currency rates (with caching)
+    function fetchCurrencyRates() {
+      const cached = localStorage.getItem("currencyRates");
+      const cachedTime = localStorage.getItem("currencyRatesTime") || 0;
+      if (cached && Date.now() - cachedTime < CACHE_DURATION) {
+        currencyRates = JSON.parse(cached);
+        populateCurrencySelectors();
+        updateCurrencyLastUpdate(new Date(parseInt(cachedTime)));
+        return Promise.resolve();
+      } else {
+        return $.getJSON(currencyAPI)
+          .done((data) => {
+            if (data.result === "success") {
+              currencyRates = data.rates;
+              localStorage.setItem("currencyRates", JSON.stringify(currencyRates));
+              localStorage.setItem("currencyRatesTime", Date.now());
+              populateCurrencySelectors();
+              updateCurrencyLastUpdate(new Date());
+            } else {
+              $("#currencyResult").text("Failed to fetch currency rates.");
+            }
+          })
+          .fail(() => {
+            $("#currencyResult").text("Error fetching currency rates.");
+          });
+      }
+    }
+
+    function updateCurrencyLastUpdate(date) {
+      $("#currencyLastUpdate").text(
+        "Last updated: " + date.toLocaleString()
+      );
+    }
+
+    $("#convertCurrencyBtn").click(() => {
+      const from = $("#currencyFrom").val();
+      const to = $("#currencyTo").val();
+      const amount = parseFloat($("#currencyAmount").val());
+      if (!from || !to || isNaN(amount)) {
+        $("#currencyResult").text("Please select currencies and enter valid amount.");
+        return;
+      }
+      const fromRate = currencyRates[from];
+      const toRate = currencyRates[to];
+      if (!fromRate || !toRate) {
+        $("#currencyResult").text("Currency rate unavailable.");
+        return;
+      }
+      const converted = (amount / fromRate) * toRate;
+      $("#currencyResult").text(
+        `${amount} ${from} = ${converted.toFixed(4)} ${to}`
+      );
+      localStorage.setItem("currencyFrom", from);
+      localStorage.setItem("currencyTo", to);
+      localStorage.setItem("currencyAmount", amount);
+    });
+
+    // Initial fetch of currency rates
+    fetchCurrencyRates();
+
+    // ========== Length Converter ==========
+    const lengthUnits = {
+      m: 1,
+      km: 1000,
+      ft: 0.3048,
+      mi: 1609.344,
+    };
+
+    $("#convertLengthBtn").click(() => {
+      const from = $("#lengthFrom").val();
+      const to = $("#lengthTo").val();
+      const amount = parseFloat($("#lengthAmount").val());
+      if (!from || !to || isNaN(amount)) {
+        $("#lengthResult").text("Please select units and enter valid amount.");
+        return;
+      }
+      const meters = amount * lengthUnits[from];
+      const converted = meters / lengthUnits[to];
+      $("#lengthResult").text(
+        `${amount} ${from} = ${converted.toFixed(4)} ${to}`
+      );
+      localStorage.setItem("lengthFrom", from);
+      localStorage.setItem("lengthTo", to);
+      localStorage.setItem("lengthAmount", amount);
+    });
+
+    // Restore length inputs
+    $("#lengthFrom").val(localStorage.getItem("lengthFrom") || "m");
+    $("#lengthTo").val(localStorage.getItem("lengthTo") || "km");
+    $("#lengthAmount").val(localStorage.getItem("lengthAmount") || "");
+
+    // ========== Weight Converter ==========
+    const weightUnits = {
+      kg: 1,
+      g: 0.001,
+      lb: 0.45359237,
+      oz: 0.02834952,
+    };
+
+    $("#convertWeightBtn").click(() => {
+      const from = $("#weightFrom").val();
+      const to = $("#weightTo").val();
+      const amount = parseFloat($("#weightAmount").val());
+      if (!from || !to || isNaN(amount)) {
+        $("#weightResult").text("Please select units and enter valid amount.");
+        return;
+      }
+      const kg = amount * weightUnits[from];
+      const converted = kg / weightUnits[to];
+      $("#weightResult").text(
+        `${amount} ${from} = ${converted.toFixed(4)} ${to}`
+      );
+      localStorage.setItem("weightFrom", from);
+      localStorage.setItem("weightTo", to);
+      localStorage.setItem("weightAmount", amount);
+    });
+
+    // Restore weight inputs
+    $("#weightFrom").val(localStorage.getItem("weightFrom") || "kg");
+    $("#weightTo").val(localStorage.getItem("weightTo") || "lb");
+    $("#weightAmount").val(localStorage.getItem("weightAmount") || "");
+
+    // ========== Loan EMI Calculator ==========
+    $("#calcLoanBtn").click(() => {
+      const principal = parseFloat($("#loanAmount").val());
+      const annualRate = parseFloat($("#loanRate").val());
+      const months = parseInt($("#loanTenure").val());
+
+      if (
+        isNaN(principal) ||
+        principal <= 0 ||
+        isNaN(annualRate) ||
+        annualRate < 0 ||
+        isNaN(months) ||
+        months <= 0
+      ) {
+        $("#emiResult")
+          .removeClass("d-none")
+          .text("Please enter valid inputs for all fields.");
+        return;
+      }
+
+      const monthlyRate = annualRate / 12 / 100;
+      // EMI formula
+      const emi =
+        (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+        (Math.pow(1 + monthlyRate, months) - 1);
+      const totalPayment = emi * months;
+      const totalInterest = totalPayment - principal;
+
+      $("#emiResult")
+        .removeClass("d-none")
+        .html(
+          `<strong>EMI:</strong> ₹${emi.toFixed(
+            2
+          )} / month<br/>
+           <strong>Total Interest:</strong> ₹${totalInterest.toFixed(
+             2
+           )}<br/>
+           <strong>Total Payment:</strong> ₹${totalPayment.toFixed(2)}`
+        );
+
+      localStorage.setItem("loanAmount", principal);
+      localStorage.setItem("loanRate", annualRate);
+      localStorage.setItem("loanTenure", months);
+    });
+
+    // Restore Loan inputs
+    $("#loanAmount").val(localStorage.getItem("loanAmount") || "");
+    $("#loanRate").val(localStorage.getItem("loanRate") || "");
+    $("#loanTenure").val(localStorage.getItem("loanTenure") || "");
+
+    // ========== SIP Calculator ==========
+    $("#calcSIPBtn").click(() => {
+      const monthlyInvestment = parseFloat($("#sipMonthly").val());
+      const annualReturn = parseFloat($("#sipRate").val());
+      const years = parseInt($("#sipTenure").val());
+
+      if (
+        isNaN(monthlyInvestment) ||
+        monthlyInvestment <= 0 ||
+        isNaN(annualReturn) ||
+        annualReturn < 0 ||
+        isNaN(years) ||
+        years <= 0
+      ) {
+        $("#sipResult")
+          .removeClass("d-none")
+          .text("Please enter valid inputs for all fields.");
+        return;
+      }
+
+      const months = years * 12;
+      const monthlyReturn = annualReturn / 12 / 100;
+
+      // SIP future value formula
+      const futureValue =
+        monthlyInvestment *
+        ((Math.pow(1 + monthlyReturn, months) - 1) / monthlyReturn) *
+        (1 + monthlyReturn);
+
+      $("#sipResult")
+        .removeClass("d-none")
+        .html(
+          `<strong>Future Value:</strong> ₹${futureValue.toFixed(2)}`
+        );
+
+      localStorage.setItem("sipMonthly", monthlyInvestment);
+      localStorage.setItem("sipRate", annualReturn);
+      localStorage.setItem("sipTenure", years);
+    });
+
+    // Restore SIP inputs
+    $("#sipMonthly").val(localStorage.getItem("sipMonthly") || "");
+    $("#sipRate").val(localStorage.getItem("sipRate") || "");
+    $("#sipTenure").val(localStorage.getItem("sipTenure") || "");
+
+  </script>
+</body>
+</html>
